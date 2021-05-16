@@ -62,7 +62,7 @@ async function showCard(){
                             ${i.status}
                         </label><br>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#EditCard1Modal${i.id}"><i class="fas fa-edit mr-2"></i>Edit Card</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#EditCard1Modal"><i class="fas fa-edit mr-2"></i>Edit Card</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button id='delButton' type="submit button" class="btn btn-primary" onclick="javascript:window.location.reload()">Delete Card</button>
                         </div>
@@ -72,59 +72,6 @@ async function showCard(){
             </div>
         </div>
         </div>
-
-
-
-
-        <!-- EDIT CARD MODAL -->
-        <div class="modal fade" id="EditCard1Modal${i.id}" tabindex="-1" role="dialog" aria-labelledby="EditCard1ModalLabel" aria-hidden="true" style="max-width: 100%;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="EditCard1ModalLabel">Edit Card</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-
-                <div class="modal-body text-left">
-                    <form method="PUT" id='fetchSaveCardForm' action='http://localhost:8080/todolist/'>
-                        <label name='id'>Id: 
-                            <input type='text' name='putId' id='putId' value="${i.id}"/>
-                        </label><br>
-                        <label name='name'>Name: 
-                            <input type='text' name='putName' id='putName' value="${i.name}"/>
-                        </label><br>
-                        <label name='description'>Description: 
-                            <input type='text' name='putDescription' id='putDescription' value="${i.description}"/>
-                        </label><br>
-                        <label name='assignedto'>Assigned to: 
-                            <input type='text' name='putAssignedto' id='putAssignedto' value="${i.assignedto}"/>
-                        </label><br>
-                        <label name='duedate'>Due date: 
-                            <input type='text' name='putDuedate' id='putDuedate' value="${i.duedate}"/>
-                        </label><br>
-                        <label name='status'>Status: 
-                            <input type='text' name='putStatus' id='putStatus' value="${i.status}"/>
-                        </label><br>
-
-                        <div class="modal-footer">
-                            <button id='saveButton' type="submit button" class="btn btn-primary" onclick="javascript:window.location.reload()">Save Changes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-
-                    </form>
-                </div>
-
-            </div>
-        </div>
-        </div>
-
-
-
-
-
-
 
 
        `        
@@ -163,9 +110,11 @@ fetchAddCardForm.addEventListener('submit', async (event) => {
 })
 
 
-//EDIT CARD 
-const fetchEditCardForm = document.querySelector('#fetchEditCardForm')
-fetchEditCardForm.addEventListener('submit', async (event) => {
+
+
+//Edit Card
+const saveArea = document.querySelector('#fetchSaveCardForm')
+saveArea.addEventListener('submit', async (event) => {
     event.preventDefault();
     const form = event.target;
     const formObject = {};
@@ -176,11 +125,11 @@ fetchEditCardForm.addEventListener('submit', async (event) => {
     formObject['duedate'] = form.putDuedate.value;
     formObject['status'] = form.putStatus.value;
     const response = await fetch(`http://localhost:8080/todolist/${form.putId.value}`, {
-        method: 'PUT',
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formObject),
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(formObject),
     })
-    let jsonResponse = await response.json();
-})
+        let jsonResponse = await response.json();
+    })
