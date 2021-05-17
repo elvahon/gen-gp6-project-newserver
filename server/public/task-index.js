@@ -121,20 +121,36 @@ async function showCard(){
         </div>
 
 
-
-
-
-
-
+        <script>
+        async function editCard(){
+            const saveArea = document.querySelector('#fetchSaveCardForm')
+            saveArea.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const form = event.target;
+            const formObject = {};
+            formObject['id'] = form.putId.value;
+            formObject['name'] = form.putName.value;
+            formObject['description'] = form.putDescription.value;
+            formObject['assignedto'] = form.putAssignedto.value;
+            formObject['duedate'] = form.putDuedate.value;
+            formObject['status'] = form.putStatus.value;
+            const response = await fetch('http://localhost:8080/todolist/${i.id}', {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formObject),
+            })
+                let jsonResponse = await response.json();
+            })
+        }
+        </script>
 
        `        
     }
     displayArea.innerHTML = displayhtml;
 }
 showCard();
-
-
-
 
 
 
@@ -163,24 +179,24 @@ fetchAddCardForm.addEventListener('submit', async (event) => {
 })
 
 
-//EDIT CARD 
-const fetchEditCardForm = document.querySelector('#fetchEditCardForm')
-fetchEditCardForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const formObject = {};
-    formObject['id'] = form.putId.value;
-    formObject['name'] = form.putName.value;
-    formObject['description'] = form.putDescription.value;
-    formObject['assignedto'] = form.putAssignedto.value;
-    formObject['duedate'] = form.putDuedate.value;
-    formObject['status'] = form.putStatus.value;
-    const response = await fetch(`http://localhost:8080/todolist/${form.putId.value}`, {
-        method: 'PUT',
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formObject),
-    })
-    let jsonResponse = await response.json();
-})
+// //EDIT CARD 
+// const fetchEditCardForm = document.querySelector('#fetchEditCardForm')
+// fetchEditCardForm.addEventListener('submit', async (event) => {
+//     event.preventDefault();
+//     const form = event.target;
+//     const formObject = {};
+//     formObject['id'] = form.putId.value;
+//     formObject['name'] = form.putName.value;
+//     formObject['description'] = form.putDescription.value;
+//     formObject['assignedto'] = form.putAssignedto.value;
+//     formObject['duedate'] = form.putDuedate.value;
+//     formObject['status'] = form.putStatus.value;
+//     const response = await fetch(`http://localhost:8080/todolist/${form.putId.value}`, {
+//         method: 'PUT',
+//         headers:{
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(formObject),
+//     })
+//     let jsonResponse = await response.json();
+// })
