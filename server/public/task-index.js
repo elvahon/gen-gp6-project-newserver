@@ -41,6 +41,7 @@ async function showCard(){
                     <form id='ViewCardForm'>
                         <label class='hide' name='id'>Id: 
                             ${i.id}
+                            <input type='text' name='delId' id='delId' value="${i.id}"/>
                         </label>
                         <label name='name'>Name: 
                             ${i.name}
@@ -63,11 +64,13 @@ async function showCard(){
                             <button id='delButton' type="submit button" class="btn btn-primary" onclick="javascript:window.location.reload()">Delete Card</button>
                         </div>
                     </form>
+                    <div id='deleteArea'></div>
                 </div>
 
             </div>
         </div>
         </div>
+
 
 
 
@@ -123,7 +126,9 @@ async function showCard(){
 
     //--------------------- EDIT CARD BELOW-----------------------------
     var newScript = document.createElement("script");
-    var inlineScript = document.createTextNode(`addEventListener('submit', async (event) => {
+    var inlineScript = document.createTextNode(`
+    
+    addEventListener('submit', async (event) => {
         event.preventDefault();
         const form = event.target;
         const formObject = {};
@@ -142,10 +147,42 @@ async function showCard(){
         body: JSON.stringify(formObject),
         })
             let jsonResponse = await response.json();
-        })`);
+        })
+        
+        `);
     newScript.appendChild(inlineScript);
     document.querySelector('#fetchSaveCardForm').appendChild(newScript);
     //--------------------- EDIT CARD ABOVE-----------------------------
+
+
+
+
+
+    //--------------------- DELETE CARD BELOW-----------------------------
+    var newNewScript = document.createElement("script");
+    var delScript = document.createTextNode(`
+    console.log(2)
+    addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formObject = {};
+        formObject['id'] = form.delId.value;
+        console.log('http://localhost:8080/todolist/' + form.delId.value)      
+        fetchLink = 'http://localhost:8080/todolist/' + form.delId.value;
+        const response = await fetch(fetchLink , {
+            method: 'DELETE',
+            headers: {
+            "Content-Type": "application/json"
+        },
+        })
+        .then(res => res.text()) 
+        .then(res => console.log(res))
+        })`
+        )
+    newNewScript.appendChild(delScript);
+    document.querySelector('#delButton').appendChild(newNewScript);
+
+    //--------------------- DELETE CARD ABOVE-----------------------------
 
 
 
