@@ -1,7 +1,10 @@
+let jsonResponse = [];
+
+
 // GET CARD ----- [todo] 
 async function showCard(){  
     const data = await fetch('http://localhost:8080/todolist')
-    const jsonResponse = await data.json()
+    jsonResponse = await data.json()
     let displayArea = document.querySelector('#card-fetch-area')
     let displayhtml = ``
     for (let i of jsonResponse){
@@ -77,14 +80,23 @@ async function showCard(){
        `        
     }
     displayArea.innerHTML = displayhtml;
-
+    console.log('done show card function')
 
 }
 showCard();
 
 
 
+async function logJson(){ 
+    const data = await fetch('http://localhost:8080/todolist')
+    jsonResponse = await data.json()
+    console.log('with log function')
+    console.log(jsonResponse)
+    console.log('done log function')
+    return jsonResponse;
+};
 
+logJson();
 
 
 
@@ -161,3 +173,5 @@ fetch(`http://localhost:8080/todolist/${jsonResponse[0].id}`, {
 .then(res => res.text()) 
 .then(res => console.log(res))
 })
+
+

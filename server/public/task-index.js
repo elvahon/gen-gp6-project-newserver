@@ -120,30 +120,12 @@ async function showCard(){
         </div>
         </div>
 
+
        `        
     }
     displayArea.innerHTML = displayhtml;
 }
 showCard();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -191,4 +173,5 @@ fetchEditCardForm.addEventListener('submit', async (event) => {
         body: JSON.stringify(formObject),
     })
     let jsonResponse = await response.json();
-})
+}
+)
