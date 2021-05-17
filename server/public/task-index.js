@@ -43,9 +43,9 @@ async function showCard(){
                 </div>
                 <div class="modal-body text-left">
                     <form id='ViewCardForm'>
-                        <label name='id'>Id: 
+                        <label class='hide' name='id'>Id: 
                             ${i.id}
-                        </label><br>
+                        </label>
                         <label name='name'>Name: 
                             ${i.name}
                         </label><br>
@@ -89,9 +89,9 @@ async function showCard(){
 
                 <div class="modal-body text-left">
                     <form method="PUT" id='fetchSaveCardForm' action='http://localhost:8080/todolist/'>
-                        <label name='id'>Id: 
+                        <label class='hide' name='id'>Id: 
                             <input type='text' name='putId' id='putId' value="${i.id}"/>
-                        </label><br>
+                        </label>
                         <label name='name'>Name: 
                             <input type='text' name='putName' id='putName' value="${i.name}"/>
                         </label><br>
@@ -124,19 +124,48 @@ async function showCard(){
        `        
     }
     displayArea.innerHTML = displayhtml;
+
+    //--------------------- EDIT CARD BELOW-----------------------------
+    var newScript = document.createElement("script");
+    var inlineScript = document.createTextNode(`addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formObject = {};
+        formObject['id'] = form.putId.value;
+        formObject['name'] = form.putName.value;
+        formObject['description'] = form.putDescription.value;
+        formObject['assignedto'] = form.putAssignedto.value;
+        formObject['duedate'] = form.putDuedate.value;
+        formObject['status'] = form.putStatus.value;
+        fetchLink = 'http://localhost:8080/todolist/' + form.putId.value;
+        const response = await fetch(fetchLink , {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formObject),
+        })
+            let jsonResponse = await response.json();
+        })`);
+    newScript.appendChild(inlineScript);
+    document.querySelector('#fetchSaveCardForm').appendChild(newScript);
+    //--------------------- EDIT CARD ABOVE-----------------------------
+
+
+
 }
 showCard();
 
 
 
 
-//ADD CARD ----- Fetch: POST with JSON format
+//------------------ADD CARD BELOW------------------------
 const fetchAddCardForm = document.querySelector('#fetchAddCardForm')
 fetchAddCardForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const form = event.target;
     const formObject = {};
-    formObject['id'] = form.fetchId.value;
+    formObject['id'] = Math.floor(Math.random()*1000);
     formObject['name'] = form.fetchName.value;
     formObject['description'] = form.fetchDescription.value;
     formObject['assignedto'] = form.fetchAssignedto.value;
@@ -151,27 +180,7 @@ fetchAddCardForm.addEventListener('submit', async (event) => {
     })
     let jsonResponse = await response.json();
 })
+//------------------ADD CARD ABOVE------------------------
 
 
-//EDIT CARD 
-const fetchEditCardForm = document.querySelector('#fetchEditCardForm')
-fetchEditCardForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const formObject = {};
-    formObject['id'] = form.putId.value;
-    formObject['name'] = form.putName.value;
-    formObject['description'] = form.putDescription.value;
-    formObject['assignedto'] = form.putAssignedto.value;
-    formObject['duedate'] = form.putDuedate.value;
-    formObject['status'] = form.putStatus.value;
-    const response = await fetch(`http://localhost:8080/todolist/${form.putId.value}`, {
-        method: 'PUT',
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formObject),
-    })
-    let jsonResponse = await response.json();
-}
-)
+

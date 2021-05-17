@@ -75,7 +75,7 @@
     <!-- Task Column Session-->
     <div class="task-column-session d-flex flex-wrap flex-row justify-content-center">
 
-        <!-- Task List 1-->
+        <!-- Task List 1
         <div class="task-list-kit card border-success mb-3 ">
 
             <div class="card-header bg-transparent">
@@ -95,7 +95,7 @@
 
             <div class="task-column-session-body card-body text-success" style="overflow-y: scroll;">
 
-                <!-- Task Card 1 -->
+                 ----------------Task Card 1 --------------------
                 <div class="task-card-kit ">
                     <div class="clearfix">
                         <button type="button " class="status-overlap rounded-pill btn btn-info float-left ">IN PROGRESS</button>
@@ -127,13 +127,13 @@
             </div>
 
             <div class="card-footer bg-transparent text-center ">
-                <!-- Button trigger modal -->
+                -- Button trigger modal --
                 <button type="button" class="btn" data-toggle="modal" data-target="#AddNewCardModal">+ Add New Card</button>
             </div>
 
 
 
-        </div>
+        </div> -->
 
         <!-- Task List 2-->
         <div class="task-list-kit card border-success mb-3 ">
@@ -185,9 +185,9 @@
                 </div>
                 <div class="modal-body text-left">
                     <form method="POST" id='fetchAddCardForm' action='http://localhost:8080/todolist'>
-                        <label name='id'>Id: 
+                        <label class='hide' name='id'>Id: 
                             <input type='text' name='fetchId' id='fetchId' />
-                        </label><br>
+                        </label>
                         <label name='name'>Name: 
                             <input type='text' name='fetchName' id='fetchName' />
                         </label><br>

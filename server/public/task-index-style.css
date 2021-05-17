@@ -12,6 +12,7 @@ body a :hover {
 }
 
 
+
 /*Color*/
 
 body {
@@ -196,7 +197,7 @@ body {
 
 .task-list-kit {
     margin: 12px 12px 12px 12px;
-    max-width: 26rem;
+    max-width: 30rem;
     max-height: 34rem;
     overflow-x: scroll;
 }
@@ -228,3 +229,24 @@ body {
     border-radius: 20px;
     border: 3px solid transparent;
 }
+
+
+ @media only screen and (min-width: 800px) {
+    .card {
+        min-width: 40rem !important;
+    }
+
+    .task-list-kit {
+        min-width: 40rem;
+        max-width: 90rem;
+
+    }
+  } 
+
+
+
+  .hide {
+      display: none;
+  }
+
+  
