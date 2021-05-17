@@ -79,7 +79,7 @@ async function showCard(){
         <!-- EDIT CARD MODAL -->
         <div class="modal fade" id="EditCard1Modal${i.id}" tabindex="-1" role="dialog" aria-labelledby="EditCard1ModalLabel" aria-hidden="true" style="max-width: 100%;">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content text-dark">
                 <div class="modal-header">
                     <h5 class="modal-title" id="EditCard1ModalLabel">Edit Card</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -89,24 +89,32 @@ async function showCard(){
 
                 <div class="modal-body text-left">
                     <form method="PUT" id='fetchSaveCardForm' action='http://localhost:8080/todolist/'>
-                        <label class='hide' name='id'>Id: 
+                        
+                    <label class='hide' name='id'>Id: 
                             <input type='text' name='putId' id='putId' value="${i.id}"/>
-                        </label>
-                        <label name='name'>Name: 
-                            <input type='text' name='putName' id='putName' value="${i.name}"/>
-                        </label><br>
-                        <label name='description'>Description: 
-                            <input type='text' name='putDescription' id='putDescription' value="${i.description}"/>
-                        </label><br>
-                        <label name='assignedto'>Assigned to: 
-                            <input type='text' name='putAssignedto' id='putAssignedto' value="${i.assignedto}"/>
-                        </label><br>
-                        <label name='duedate'>Due date: 
-                            <input type='text' name='putDuedate' id='putDuedate' value="${i.duedate}"/>
-                        </label><br>
-                        <label name='status'>Status: 
-                            <input type='text' name='putStatus' id='putStatus' value="${i.status}"/>
-                        </label><br>
+                    </label>
+                    <label name='name' class="col-form-label w-100"><span style="font-size: 1rem; font-weight: bold;">Task Name:</span>
+                        <input type='text' name='putName' id='putName' value="${i.name}" class="form-control"/>
+                    </label><br>
+                    <label name='description' class="col-form-label w-100"><span style="font-size: 1rem; font-weight: bold;">Task Description:</span>  
+                        <textarea type='text' name='putDescription' id='putDescription' value="${i.description}" class="form-control"/>${i.description}</textarea>
+                    </label><br>
+                    <label name='assignedto' class="col-form-label w-100"><i class="fas fa-tags fa-sm m-1"></i><span style="font-size: 1rem; font-weight: bold;">Members:</span> 
+                        <input type='text' name='putAssignedto' id='putAssignedto' value="${i.assignedto}" class="form-control"/>
+                    </label><br>
+                    <label name='duedate' class="col-form-label w-100"><i class="fas fa-clock fa-sm m-1"></i><span style="font-size: 1rem; font-weight: bold;">Due-Date:</span> 
+                        <input type='date' name='putDuedate' id='putDuedate' value="${i.duedate}" class="form-control"/>
+                    </label><br>
+                    <label name='status' class="col-form-label w-100"><span style="font-size: 1rem; font-weight: bold;">Status:</span> 
+                        <select type='text' name='putStatus' id='putStatus' class="form-control" required>
+                            <option value="TO DO">TO DO</option>
+                            <option value="IN PROGRESS">IN PROGRESS</option>
+                            <option value="REVIEW">REVIEW</option>
+                            <option value="DONE">DONE</option>
+                        </select>
+
+
+                    </label><br>
 
                         <div class="modal-footer">
                             <button id='saveButton' type="submit button" class="btn btn-primary" onclick="javascript:window.location.reload()">Save Changes</button>
@@ -124,6 +132,8 @@ async function showCard(){
        `        
     }
     displayArea.innerHTML = displayhtml;
+
+    
 
     //--------------------- EDIT CARD BELOW-----------------------------
     var newScript = document.createElement("script");
