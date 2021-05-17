@@ -8,26 +8,22 @@ async function showCard(){
         displayhtml = displayhtml + `
         <!-- Task Card -->
         <div class="task-card-kit ">
-            <div class="clearfix">
-                <button type="button " class="status-overlap rounded-pill btn btn-info float-left ">${i.status}</button>
-                <button type="button " class="star-overlap btn btn btn-outline-warning float-right "><i class="fas fa-star "></i></button>
-            </div>
-            <div class="card bg-light mb-3 ">
-                <div class="card-body " data-toggle="modal" data-target="#ViewCard1Modal${i.id}">
-                    <h5 class="card-title ">${i.name}</h5>
-                    <p class="card-text ">${i.description}</p>
-                    <p>${i.assignedto}</p>
-                    <div class="bg-transparent clearfix ">
-                        <button type="button " class="btn btn-light rounded-pill float-left "><i class="fas fa-clock "></i> ${i.duedate}</button>
-                        <a class="navbar-user float-right " href="# ">
-                            <i class="fas fa-user-circle fa-2x"></i>
-                            <i class="fas fa-user-circle fa-2x"></i>
-                            <i class="fas fa-user-circle fa-2x"></i>
-                        </a>
-                    </div>
+        <div class="clearfix">
+            <button type="button " class="status-overlap rounded-pill btn btn-info float-left ">${i.status}</button>
+            <button type="button " class="star-overlap btn btn btn-outline-warning float-right "><i class="fas fa-star "></i></button>
+        </div>
+        <div class="card bg-light mb-3 ">
+            <div class="card-body " data-toggle="modal" data-target="#ViewCard1Modal${i.id}">
+                <h5 class="card-title ">${i.name}</h5>
+                <p class="card-text ">${i.description}</p>
+                <div class="bg-transparent clearfix ">
+                    <button type="button " class="btn btn-light rounded-pill float-left "><i class="fas fa-clock "></i> ${i.duedate}</button>
+                    <button type="button " class="btn btn-light rounded-pill float-right "> ${i.assignedto}</button>
+
                 </div>
             </div>
         </div>
+    </div>
 
 
 

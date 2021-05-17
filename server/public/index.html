@@ -46,24 +46,27 @@
 
 <body class="text-center">
 
-    <form class="form-signin">
+    <form class="form-signin" action="./task-index.html">
         <img class="mb-4" src="./Resources/assets/brand/Generation logo.png" alt="">
         <h4 class="h5 mb-3 font-weight-normal">Please sign in</h4>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox mb-3">
             <label>
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
+            <input type="checkbox" value="remember-me"> Remember me
+            </label>
         </div>
-        <a href="./task-index.html" class="btn btn-lg btn-info btn-block">
-            Sign in
-        </a>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="submit">Sign in</button>
         <div style="margin: 20px 0 5px 0;">
             <a href="#">
                 <span style="font-size: small;">Sign up</span>
+            </a>
+        </div>
+        <div style="margin: 5px 0;">
+            <a href="./task-index.html">
+                <span style="font-size: small;">Visit as guest</span>
             </a>
         </div>
         <div style="margin: 5px 0;">
@@ -78,41 +81,6 @@
 
 
     <!--From-Bruce-server-->
-    <div id='navbar'>
-        <div class='logo'></div>
-        <div class='navbar-link'>
-            <ul class='dock'>
-                <li id='standardForm'><i class="fab fa-stripe-s"></i>tandard Form</li>
-                <li id='fetchForm'><i class="fab fa-facebook-f"></i>etch Form</li>
-            </ul>
-        </div>
-    </div>
-    <header></header>
-    <main class='main-container'>
-        <form method="POST" id='loginForm' class='not-show' action='http://localhost:8080/login'>
-            <label name='name'>Name: 
-                <input type='text' name='username' id='username' />
-            </label><br>
-            <label name='password'>password: 
-                <input type='password' name='password' id='password' />
-            </label><br>
-            <div class='btn' id='standardButton'><input type='submit' value='login' /></div>
-        </form>
-        <form method="POST" id='fetchLoginForm' action='http://localhost:8080/login'>
-            <label name='name'>Name: 
-                <input type='text' name='fetchUsername' id='fetchUsername' />
-            </label><br>
-            <label name='password'>password: 
-                <input type='password' name='fetchPassword' id='fetchPassword' />
-            </label><br>
-            <div class='btn' id='fetchButton'><input type='submit' class='button' value='login' /></div>
-        </form>
-        <div id='fetch-area'></div>
-    </main>
-    <button class='button' id='showTodolist'>Show To Do List</button>
-    <footer></footer>
-    <script src="index.js"></script>
-
 
     <!--From-Bruce-server-->
 
