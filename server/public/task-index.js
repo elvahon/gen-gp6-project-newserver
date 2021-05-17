@@ -30,38 +30,39 @@ async function showCard(){
         <!-- VIEW CARD MODAL -->
         <div class="modal fade" id="ViewCard1Modal${i.id}" tabindex="-1" role="dialog" aria-labelledby="ViewCard1ModalLabel" aria-hidden="true" style="max-width: 100%;">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content text-dark">
                 <div class="modal-header">
                     <h5 class="modal-title" id="ViewCardModalLabel">View Card</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-left">
+                <div class="modal-body text-left ">
                     <form id='ViewCardForm'>
                         <label class='hide' name='id'>Id: 
                             ${i.id}
                             <input type='text' name='delId' id='delId' value="${i.id}"/>
                         </label>
-                        <label name='name'>Name: 
-                            ${i.name}
-                        </label><br>
-                        <label name='description'>Description: 
-                            ${i.description}
-                        </label><br>
-                        <label name='assignedto'>Assigned to: 
-                            ${i.assignedto}
-                        </label><br>
-                        <label name='duedate'>Due date: 
-                            ${i.duedate}
-                        </label><br>
-                        <label name='status'>Status: 
-                            ${i.status}
-                        </label><br>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#EditCard1Modal${i.id}"><i class="fas fa-edit mr-2"></i>Edit Card</button>
+                        <label name='name' for="taskcard-name" class="col-form-label w-100"><span style="font-size: 1rem; font-weight: bold;">Task Name:</span> 
+                            <p>${i.name}</p>
+                        </label>
+                        <label name='description' for="taskcard-description" class="col-form-label w-100"><span style="font-size: 1rem; font-weight: bold;">Task Description:</span> 
+                            <p>${i.description}</p>
+                        </label>
+                        <label name='assignedto' for="colFormLabel" class="col-form-label w-100"><i class="fas fa-tags fa-sm m-1"></i><span style="font-size: 1rem; font-weight: bold;">Members:</span> 
+                            <p>${i.assignedto}</p>
+                        </label>
+                        <label name='duedate' for="example-date-input" class="col-form-label w-100"><i class="fas fa-clock fa-sm m-1"></i><span style="font-size: 1rem; font-weight: bold;">Due-Date:</span> 
+                            <p>${i.duedate}</p>
+                        </label>
+                        <label name='status' class="col-form-label w-100"><span style="font-size: 1rem; font-weight: bold;">Status:</span> 
+                            <p>${i.status}</p>
+                        </label>
+                        <div class="modal-footer px-0">
+                            <button id='delButton' type="submit button" class="btn btn-outline-danger mr-auto" onclick="javascript:window.location.reload()"><i class="far fa-trash-alt "></i></button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id='delButton' type="submit button" class="btn btn-primary" onclick="javascript:window.location.reload()">Delete Card</button>
+                            <button type="button" class="btn btn-info " data-dismiss="modal" data-toggle="modal" data-target="#EditCard1Modal${i.id}"><i class="fas fa-edit mr-2"></i>Edit Card</button>
+
                         </div>
                     </form>
                     <div id='deleteArea'></div>
@@ -161,13 +162,11 @@ async function showCard(){
     //--------------------- DELETE CARD BELOW-----------------------------
     var newNewScript = document.createElement("script");
     var delScript = document.createTextNode(`
-    console.log(2)
     addEventListener('submit', async (event) => {
         event.preventDefault();
         const form = event.target;
         const formObject = {};
         formObject['id'] = form.delId.value;
-        console.log('http://localhost:8080/todolist/' + form.delId.value)      
         fetchLink = 'http://localhost:8080/todolist/' + form.delId.value;
         const response = await fetch(fetchLink , {
             method: 'DELETE',
