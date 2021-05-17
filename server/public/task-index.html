@@ -184,24 +184,29 @@
                 </div>
                 <div class="modal-body text-left">
                     <form method="POST" id='fetchAddCardForm' action='http://localhost:8080/todolist'>
-                        <label class='hide' name='id'>Id: 
-                            <input type='text' name='fetchId' id='fetchId' />
+                        <label name='id' for="taskcard-name" class="hide col-form-label w-100"><span style="font-size: 1.2rem;">ID</span> 
+                            <input type='text' name='fetchId' id='fetchId' class="form-control" placeholder="ID"/>
                         </label>
-                        <label name='name'>Name: 
-                            <input type='text' name='fetchName' id='fetchName' />
+                        <label name='name' for="taskcard-name" class="col-form-label w-100"><span style="font-size: 1.2rem;">Task Name</span> 
+                            <input type='text' name='fetchName' id='fetchName' class="form-control" placeholder="Task Name"/>
                         </label><br>
-                        <label name='description'>Description: 
-                            <input type='text' name='fetchDescription' id='fetchDescription' />
+                        <label name='description' for="taskcard-description" class="col-form-label w-100"><span style="font-size: 1.2rem;">Task Description</span> 
+                            <textarea type='text' name='fetchDescription' id='fetchDescription' class="form-control" placeholder="Task Description"></textarea>
                         </label><br>
-                        <label name='assignedto'>Assigned to: 
-                            <input type='text' name='fetchAssignedto' id='fetchAssignedto' />
+                        <label name='assignedto' for="colFormLabel" class="col-form-label w-100"><i class="fas fa-tags fa-sm m-1"></i><span style="font-size: 1.2rem;">Members</span> 
+                            <input type='text' name='fetchAssignedto' id='fetchAssignedto' class="form-control" placeholder="Assign To "/>
                         </label><br>
-                        <label name='duedate'>Due date: 
-                            <input type='text' name='fetchDuedate' id='fetchDuedate' />
+                        <label name='duedate' for="example-date-input" class="col-form-label w-100"><i class="fas fa-clock fa-sm m-1"></i><span style="font-size: 1.2rem;">Due-Date</span> 
+                            <input type="date" name='fetchDuedate' id='fetchDuedate' class="form-control"/>
                         </label><br>
-                        <label name='status'>Status: 
-                            <input type='text' name='fetchStatus' id='fetchStatus' />
-                        </label><br>
+                        <label name='status' class="col-form-label w-100"><span style="font-size: 1.2rem;">Status</span> 
+                            <select class="form-control" name='fetchStatus' id='fetchStatus' required>
+                                <option value="TO DO">TO DO</option>
+                                <option value="IN PROGRESS">IN PROGRESS</option>
+                                <option value="REVIEW">REVIEW</option>
+                                <option value="DONE">DONE</option>
+                            </select>
+                        </label>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button id='fetchButton' type="submit button" class="btn btn-primary" onclick="javascript:window.location.reload()">Add Card</button>
