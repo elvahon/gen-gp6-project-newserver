@@ -106,7 +106,7 @@ async function showCard(){
                         <input type='date' name='putDuedate' id='putDuedate' value="${i.duedate}" class="form-control"/>
                     </label><br>
                     <label name='status' class="col-form-label w-100"><span style="font-size: 1rem; font-weight: bold;">Status:</span> 
-                        <select type='text' name='putStatus' id='putStatus' class="form-control" required>
+                        <select type='text' name='putStatus' id='putStatus' value="${i.status}"class="form-control" required>
                             <option value="TO DO">TO DO</option>
                             <option value="IN PROGRESS">IN PROGRESS</option>
                             <option value="REVIEW">REVIEW</option>
@@ -116,9 +116,9 @@ async function showCard(){
 
                     </label><br>
 
-                        <div class="modal-footer">
-                            <button id='saveButton' type="submit button" class="btn btn-primary" onclick="javascript:window.location.reload()">Save Changes</button>
+                        <div class="modal-footer px-0 mt-4">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id='saveButton' type="submit button" class="btn btn-info" onclick="javascript:window.location.reload()">Save Changes</button>
                         </div>
 
                     </form>
